@@ -1,0 +1,100 @@
+<!-- Сделать таблицу сортируемой: при клике на элемент <th> строки таблицы должны сортироваться по соответствующему столбцу. -->
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 4px;
+        }
+
+        th {
+            cursor: pointer;
+        }
+
+        th:hover {
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="grid">
+        <thead>
+            <tr>
+                <th data-type="number">Возраст</th>
+                <th data-type="string">Имя</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>5</td>
+                <td>Вася</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Петя</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Женя</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Маша</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Илья</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        grid.onclick = function (event) {
+
+            const target = event.target;
+            if (target.tagName != "TH") return;
+
+            const numberCells = target.cellIndex; //номер ячейки в строке (1 или 2 )
+            const type = target.dataset.type; //узнаем тип содержимого ячейки
+            const strings = grid.querySelector('tbody').rows // коллекция строк таблицы
+
+            sortTable(numberCells, strings, type)
+        }
+
+        function sortTable(numberCells, strings, type) {
+
+            const arr = []; // накапливаем содержимое ячеек столбца
+
+            for (let string of strings) { //перебираем коллекцию объектов - строчки
+
+                const collection = string.cells[numberCells].textContent//получаем столбец (1 или 2) и затем содержимое
+                arr.push(collection);
+            }
+
+            if (type === "number") {
+                arr.sort((a, b) => (+a) - (+b)); //сортировка, если тип- число
+            } else arr.sort((a, b) => (a > b ? 1 : -1)); //сортировка, если тип - строка
+
+            let i = 0; // номер строки, которую меняем 
+
+            for (let string of strings) { //перебираем каждую строчку
+                strings[i].cells[numberCells].textContent = arr[i]; //меняем содержимое соответствующей ячейки строчки
+                i += 1;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

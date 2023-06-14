@@ -1,0 +1,62 @@
+<!-- Создайте дерево, которое по клику на заголовок скрывает-показывает потомков:
+Использовать только один обработчик событий (применить делегирование)
+Клик вне текста заголовка (на пустом месте) ничего делать не должен. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="tree" id="tree">
+        <li><span class='header'>Животные</span>
+            <ul>
+                <li><span class='header'>Млекопитающие</span>
+                    <ul>
+                        <li>Коровы</li>
+                        <li>Ослы</li>
+                        <li>Собаки</li>
+                        <li>Тигры</li>
+                    </ul>
+                </li>
+                <li><span class='header'>Другие</span>
+                    <ul>
+                        <li>Змеи</li>
+                        <li>Птицы</li>
+                        <li>Ящерицы</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><span class='header'>Рыбы</span>
+            <ul>
+                <li><span class='header'>Аквариумные</span>
+                    <ul>
+                        <li>Гуппи</li>
+                        <li>Скалярии</li>
+                    </ul>
+                </li>
+                <li><span class='header'>Морские</span>
+                    <ul>
+                        <li>Морская форель</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        tree.onclick = function (event) {
+            if (event.target.className != 'header') return;
+            let kids = event.target.parentNode.children;
+            kids[1].hidden = !kids[1].hidden;
+        }
+    </script>
+
+</body>
+
+</html>
