@@ -62,15 +62,15 @@
     <script>
         grid.onclick = function (event) {
 
-            let target = event.target;
+            const target = event.target;
             if (target.tagName != "TH") return;
 
-            let numberCells = target.cellIndex;
-            let strings = grid.querySelector('tbody').rows
+            const numberCells = target.cellIndex;
+            const strings = grid.querySelector('tbody').rows
 
             for (let string of strings) {
-                let collection = string.cells[numberCells]
-                collection.style.color = "red";
+                const collection = string.cells[numberCells]
+                collection.style.background = "pink";
             }
         }
     </script>

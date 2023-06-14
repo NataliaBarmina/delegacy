@@ -52,7 +52,7 @@
     <script>
         tree.onclick = function (event) {
             if (event.target.className != 'header') return;
-            let kids = event.target.parentNode.children;
+            const kids = event.target.parentNode.children;
             kids[1].hidden = !kids[1].hidden;
         }
     </script>
