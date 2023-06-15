@@ -67,7 +67,7 @@
 
             const numberCells = target.cellIndex; //номер ячейки в строке (1 или 2 )
             const type = target.dataset.type; //узнаем тип содержимого ячейки
-            const strings = grid.querySelector('tbody').rows // коллекция строк таблицы
+            const strings = grid.querySelector('tbody').rows
 
             sortTable(numberCells, strings, type)
         }
@@ -78,7 +78,7 @@
 
             for (const string of strings) { //перебираем коллекцию объектов - строчки
 
-                let collection = string.cells[numberCells].textContent//получаем столбец (1 или 2) и затем содержимое
+                const collection = string.cells[numberCells].textContent//получаем столбец (1 или 2) и затем содержимое
                 arr.push(collection);
             }
 
